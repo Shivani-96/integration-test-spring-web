@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.example.demo.exception.IllegalFirstNameException;
+import com.example.demo.exception.IllegalLastNameException;
 import com.example.demo.model.Student;
 import com.example.demo.service.StudentService;
 
@@ -43,11 +45,21 @@ public class StudentController {
 	
 	@RequestMapping(value = "/student", method = RequestMethod.POST)
 	public String edit(@Valid @ModelAttribute("student") Student student, 
-			BindingResult result, Model model)  {
+			BindingResult result, Model model) throws IllegalFirstNameException, IllegalLastNameException  {
 
 		if (result.hasErrors()) {
 			model.addAttribute("errors", result.getAllErrors());
 			return "student/edit";
+		}
+		String first = student.getFirstName();
+		for(int i=0;i<first.length();i++) {
+			if(!Character.isLetter(first.charAt(i)))
+				throw new IllegalFirstNameException(); 
+		}
+		String last = student.getLastName();
+		for(int i=0;i<last.length();i++) {
+			if(!Character.isLetter(last.charAt(i)))
+				throw new IllegalLastNameException(); 
 		}
 		student = studentService.save(student);
 		return "redirect:/students";

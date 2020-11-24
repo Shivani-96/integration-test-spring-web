@@ -39,6 +39,20 @@ public class Student {
 	@Email(message = "*Please provide a valid Email")
 	@NotEmpty(message = "*Please provide an email")
 	private String email;
+	
+	@Column(name = "age")
+	//@Email(message = "*Please provide a valid Age")
+	@NotNull(message = "*Please provide an age")
+	private int age;
+
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
 
 	public Long getId() {
 		return id;
