@@ -1,68 +1,3 @@
-<!-- <!DOCTYPE html >
-<html layout:decorator="shared/homelayout"
-	xmlns:th="http://www.thymeleaf.org">
-<body>
-	<th:block layout:fragment="header">
-		<link rel="stylesheet" type="text/css" th:href="@{/css/studentedit.css}" />
-	</th:block>
-	
-	<th:block layout:fragment="content">
-			
-		<h2>Student Info</h2> <br/>
-	
-		<form class="form-horizontal" action="/student" method="POST" th:object="${student}">
-		      <input type="hidden" name="id" th:value="${student.id}" />
-		  <div class="form-group">
-		    <label class="control-label col-sm-2" for="firstname">First name:</label>
-		     <label th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"
-									class="validation-message"></label>
-		    <div class="col-sm-10"> 
-		      <input type="text" class="form-control" id="firstname" name="firstName"  th:field="*{firstName}" required>
-		    </div>
-		  </div>
-		  <div class="form-group">
-		    <label class="control-label col-sm-2" for="lastname">Last name:</label>
-		     <label th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"
-									class="validation-message"></label>
-		    <div class="col-sm-10"> 
-		      <input type="text" class="form-control" id="lastname" name="lastName"  th:value="${student.lastName}"  required>
-		    </div>
-		  </div>
-		  <div class="form-group">
-		    <label class="control-label col-sm-2" for="email">Email:</label>
-		     <label th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
-									class="validation-message"></label>
-									
-		    <div class="col-sm-10">
-		      <input type="email" class="form-control" id="email" name="email"  th:value="${student.email}">
-		    </div>
-		  </div>
-		  <div class="form-group">
-		    <label class="control-label col-sm-2" for="age">Age:</label>
-		     <label th:if="${#fields.hasErrors('age')}" th:errors="*{age}"
-									class="validation-message"></label>
-									
-		    <div class="col-sm-10">
-		      <input type="number" class="form-control" id="age" name="age"  th:value="${student.age}" min="1" max="120">
-		    </div>
-		  </div>
-		  <div class="form-group"> 
-		    <div class="col-sm-offset-2 col-sm-10">
-		      <button type="submit" class="btn btn-default">Submit</button>
-		    </div>
-		  </div>
-		</form>
-		<br/>
-		
-		<a href="/students">Student List</a>
-	</th:block>
-	
-	<th:block layout:fragment="footer">
-	</th:block>
-	
-</body>
-</html> -->
-
 <!DOCTYPE html>
 <html layout:decorator="shared/homelayout" xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -116,6 +51,31 @@
 		      <input type="number" class="form-control" id="age" name="age"  th:value="${student.age}" min="1" max="120">
 		    </div>
 		  </div>
+		  <div class="form-group">
+		    <label class="control-label col-sm-2" for="phone" style="margin-left : 10px">Phone:</label>
+		     <label th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"
+									class="validation-message"></label>
+
+		    <div class="col-sm-10">
+		      <input type="tel" class="form-control" id="phone" name="phone"  th:value="${student.phone}" pattern="[0-9]{10}" required>
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label class="control-label col-sm-2" for="gender" style="margin-left : 10px">Gender:</label>
+		     <label th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"
+									class="validation-message"></label>
+
+		    <div class="col-sm-10">
+		      <!-- <input type="tel" class="form-control" id="phone" name="phone"  th:value="${student.phone}" pattern="[0-9]{10}" required> -->
+		      <input type="radio" id="male" name="gender" value="male" checked>
+<label for="male">Male</label><br>
+<input type="radio" id="female" name="gender" value="female">
+<label for="female">Female</label><br>
+<input type="radio" id="other" name="gender" value="other">
+<label for="other">Other</label>
+		    </div>
+		  </div>
+		  
 		  <div class="form-group">
 		    <div class="col-sm-offset-2 col-sm-10">
 		      <center>

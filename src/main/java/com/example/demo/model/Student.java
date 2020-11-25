@@ -13,6 +13,7 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.NumberFormat;
 
 @Entity
 @Table(name = "students")
@@ -45,6 +46,30 @@ public class Student {
 	@NotNull(message = "*Please provide an age")
 	private int age;
 
+	@Column(name = "phone")
+	@NumberFormat(pattern = "#")
+	@NotNull
+	private long phone;
+	
+	@Column(name = "gender")
+	@NotEmpty
+	private String gender;
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public long getPhone() {
+		return phone;
+	}
+
+	public void setPhone(long phone) {
+		this.phone = phone;
+	}
 
 	public int getAge() {
 		return age;
